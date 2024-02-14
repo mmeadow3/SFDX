@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+   <masterLabel>FirstTest</masterLabel>
+   <isExposed>true</isExposed>
+   <description>This Lightning Message Channel sends information from LWC to LWC</description>
+
+   <lightningMessageFields>
+       <fieldName>messageToSend</fieldName>
+       <description>message To Send</description>
+   </lightningMessageFields>
+
+   <lightningMessageFields>
+       <fieldName>number</fieldName>
+       <description>Just a random number to send multiple params</description>
+   </lightningMessageFields>
+
+</LightningMessageChannel>
+
+<!-- first test of Lighting Message Service -->
+<!-- Had to maually make this folder and file -->
+<!--  should add the value : LightningMessageChannel to the package.xml file that we pull from -->
+<!-- https://www.apexhours.com/lightning-message-service-lms-messagechannel/ -->

@@ -7,7 +7,7 @@ export default class ProjectSRP extends LightningElement {
 
      handleClick(){
         console.log(this.value);
-        callApexClass({"userType": this.value}).then(() =>{  ////////// for this to work - variable name MUST match the Apex Class Variable name
+        callApexClass({"userType": this.value}).then(() =>{
             console.log("done");
         }).catch((err) => {
             console.log('error : ' + err.message);

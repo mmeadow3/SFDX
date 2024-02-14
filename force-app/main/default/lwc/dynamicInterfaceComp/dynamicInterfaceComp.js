@@ -12,8 +12,6 @@ export default class DynamicInterfaceComp extends LightningElement {
         console.log(this.clickedButtonLabel);
         console.log(this.identifier);
         console.log(this.recordId);
-        callTheMethod({"className": this.identifier}).then(() =>{
-            console.log("done");
-        })
+        callTheMethod({"className": this.identifier});
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This Lightning Message Channel sends information from LWC to LWC</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <description>message To Send</description>
+        <fieldName>messageToSend</fieldName>
+    </lightningMessageFields>
+    <lightningMessageFields>
+        <description>Just a random number to send multiple params</description>
+        <fieldName>number</fieldName>
+    </lightningMessageFields>
+    <masterLabel>SecondTest</masterLabel>
+</LightningMessageChannel>
