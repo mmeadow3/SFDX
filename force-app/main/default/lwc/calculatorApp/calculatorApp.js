@@ -16,7 +16,7 @@ export default class CalculatorApp extends LightningElement {
     handleEquals(){
         switch (this.operation) {
             case '+':
-                this.value = this.firstValue + this.secondValue;
+                this.value = Number(this.firstValue) + Number(this.secondValue);
                 this.value = this.value.toFixed(2);
                 this.firstValue = this.value;
                 break;
@@ -69,7 +69,7 @@ export default class CalculatorApp extends LightningElement {
                 this.value = this.firstValue;
             }
         }  else {
-            this.secondValue = this.secondValue +  event.target.dataset.value;
+            this.secondValue = this.secondValue + event.target.dataset.value;
             this.value = this.secondValue;
        }
     }
@@ -80,10 +80,10 @@ export default class CalculatorApp extends LightningElement {
         this.secondValue = '';
         this.operation = '-';
     }
-
+// plus is not working - just adding with decimals
     handlePlus(){
         let numberInput = Number(this.refs.calcInput.value); //// this is passing by a custom "ref" on the HTML - this is preferred over queryselector
-        this.value = numberInput;
+        this.firstValue = numberInput;
         this.secondValue = '';
         this.operation = '+';
     }
@@ -97,7 +97,7 @@ export default class CalculatorApp extends LightningElement {
 
     handleDivide(){
         let numberInput = Number(this.refs.calcInput.value);
-        this.value = numberInput;
+        this.firstValue = numberInput;
         this.secondValue = '';
         this.operation = '/';
     }
