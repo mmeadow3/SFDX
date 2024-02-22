@@ -23,7 +23,10 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
-scripts/
+
+#apex and soql scripts - only need these locally 
+scripts/*
+
 
 # Eslint cache
 .eslintcache
