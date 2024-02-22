@@ -23,6 +23,8 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
+scripts/apex/
+scripts/soql/
 
 # Eslint cache
 .eslintcache
@@ -43,3 +45,4 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+

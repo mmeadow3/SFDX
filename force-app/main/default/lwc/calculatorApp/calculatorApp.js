@@ -1,7 +1,8 @@
+/* eslint-disable no-case-declarations */
 import { LightningElement } from 'lwc';
 
 export default class CalculatorApp extends LightningElement {
-    value = null; //// only for display
+    value = 0; //// only for display
     firstValue = null;
     secondValue = '';
     operation;
@@ -17,7 +18,22 @@ export default class CalculatorApp extends LightningElement {
         switch (this.operation) {
             case '+':
                 this.value = Number(this.firstValue) + Number(this.secondValue);
-                this.value = this.value.toFixed(2);
+                // eslint-disable-next-line no-case-declarations
+                let firstValue;
+                let secondValue;
+
+                if (this.firstValue % 1 !== 0){   /////check for decimal
+                    firstValue = this.firstValue.toString().split('.')[1].length;
+                } else {
+                    firstValue = 0;
+                }
+                if (this.secondValue % 1 !== 0){
+                    secondValue = this.secondValue.toString().split('.')[1].length;
+                } else {
+                    secondValue = 0;
+                }
+                let fixedDigits = Math.max(firstValue, secondValue);
+                this.value = this.value.toFixed(fixedDigits);
                 this.firstValue = this.value;
                 break;
             case '-':
@@ -59,6 +75,9 @@ export default class CalculatorApp extends LightningElement {
 
     handleNumber(event){
         event.stopPropagation();
+        if (this.value === 0){
+            this.value = null;
+        }
        // console.log(event.target.dataset.test); /// this is just an example of adding attributes to div using data-*
         if (this.operation == null){
             if (this.value === null){
@@ -80,7 +99,7 @@ export default class CalculatorApp extends LightningElement {
         this.secondValue = '';
         this.operation = '-';
     }
-// plus is not working - just adding with decimals
+
     handlePlus(){
         let numberInput = Number(this.refs.calcInput.value); //// this is passing by a custom "ref" on the HTML - this is preferred over queryselector
         this.firstValue = numberInput;
