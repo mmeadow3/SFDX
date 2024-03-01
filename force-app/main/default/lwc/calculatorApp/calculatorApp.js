@@ -1,14 +1,34 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-case-declarations */
-import { LightningElement } from 'lwc';
+import { LightningElement, api, wire, track } from 'lwc';
+import { addNumbertoField } from 'c/calculatorService';  ///// import from the service class
+import { getObjectInfo } from "lightning/uiObjectInfoApi";
 
 export default class CalculatorApp extends LightningElement {
+    @api recordId;
+    @api objectApiName;
+    @track objectInfo;
+    @wire(getObjectInfo, { objectApiName: '$objectApiName' })
+    objectInfoResults;  //// wire is more efficient than imperative apex
+
     value = 0; //// only for display
     firstValue = null;
     secondValue = '';
     operation;
+    fieldValue;
+
+    renderedCallback() {
+        ///// this will fire every time data is update - ex: when the picklist is changed or a number is clicked
+        //// when ever the DOM is changed
+        console.log('Current Object : ' + this.objectApiName);
+        console.log('Record Id : '  + this.recordId)  /// Had to remove <target>lightning__AppPage</target> from metadata file for this to work
+        //// trying to console.log the @wire objectInfoResults wont work here since the data hasnt been returned yet 
+   }
 
     handleClear(){
-        this.value = null;
+        console.log(this.objectInfoResults.data)
+
+        this.value = 0;
         this.firstValue = null;
         this.secondValue = '';
         this.operation = null;
@@ -120,6 +140,29 @@ export default class CalculatorApp extends LightningElement {
         this.secondValue = '';
         this.operation = '/';
     }
+
+    ///use getters to set values
+    get options() {
+        const fields = [];
+        const objectData = this.objectInfoResults.data.fields;  ////make sure the HTML has an if:true to confirm the data exists - otherwise this will error
+        for (const [key, value] of Object.entries(objectData)) {   ///// do not remove 'key' or this will not work
+            if (value.dataType === 'Currency' || value.dataType === 'Int' || value.dataType === 'Double'){
+                fields.push({label: value.label, value : value.apiName})
+            }
+          }
+        return fields;
+    }
+
+    handleSelect(event){
+        this.fieldValue = event.target.value;
+    }
+
+    addtoField(){
+        addNumbertoField(this.recordId, this.value);
+        //// start will revenue 
+    }
+
+    // list out all numerical fields and let the user choose which fields to update
 
 
     ////imperatively call an Apex method
