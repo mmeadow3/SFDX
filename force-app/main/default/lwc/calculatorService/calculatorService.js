@@ -1,12 +1,11 @@
 import { updateRecord } from "lightning/uiRecordApi";
 
-const addNumbertoField = (id, value) => {
-
+const addNumbertoField = (id, fieldToUpdate, value) => {
 
     const fields = {};
 
-    fields[ID_FIELD.fieldApiName] = this.recordId;
-    fields[NAME_FIELD.fieldApiName] = this.name;
+    fields.Id = id;
+    fields[fieldToUpdate] = value;
 
     const recordInput = {
       fields: fields
@@ -18,4 +17,4 @@ const addNumbertoField = (id, value) => {
 }
 
 
-export {addNumbertoField}
+export {addNumbertoField};

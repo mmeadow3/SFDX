@@ -61,8 +61,8 @@
             <div class="slds-col slds-size_1-of-2 slds-border_top slds-border_bottom slds-border_left slds-border_right slds-button" onclick={handleClear}>
                 <span class="slds-align_absolute-center">Clear</span>
             </div>
-            <div class="slds-col slds-size_1-of-2 slds-border_top slds-border_bottom slds-border_left slds-border_right slds-button" onclick={addtoAnnualRevenue}>
-                <span class="slds-align_absolute-center">Add to Rev</span>
+            <div class="slds-col slds-size_1-of-2 slds-border_top slds-border_bottom slds-border_left slds-border_right slds-button" onclick={addtoField}>
+                <span class="slds-align_absolute-center">Add to {fieldName}</span>
             </div>
           </div>
           <div class="slds-grid slds-p-left_xx-small slds-p-right_medium" if:true={objectInfoResults.data}>

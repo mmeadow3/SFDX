@@ -16,6 +16,7 @@ export default class CalculatorApp extends LightningElement {
     secondValue = '';
     operation;
     fieldValue;
+    fieldName = 'Select';
 
     renderedCallback() {
         ///// this will fire every time data is update - ex: when the picklist is changed or a number is clicked
@@ -26,8 +27,6 @@ export default class CalculatorApp extends LightningElement {
    }
 
     handleClear(){
-        console.log(this.objectInfoResults.data)
-
         this.value = 0;
         this.firstValue = null;
         this.secondValue = '';
@@ -155,18 +154,11 @@ export default class CalculatorApp extends LightningElement {
 
     handleSelect(event){
         this.fieldValue = event.target.value;
+        this.fieldName = event.target.options.find(opt => opt.value === event.detail.value).label;
     }
 
     addtoField(){
-        addNumbertoField(this.recordId, this.value);
-        //// start will revenue 
+        addNumbertoField(this.recordId, this.fieldValue, this.value);
     }
-
-    // list out all numerical fields and let the user choose which fields to update
-
-
-    ////imperatively call an Apex method
-    //// break out catch logic to another file (service class) - Since all Apex errors should be handled the same from an LWC
-    /// make the apex class a "Service Class"""
 
 }
